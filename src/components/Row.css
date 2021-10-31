@@ -19,7 +19,7 @@
   opacity:1;
 }
 .row__posterLarge {
-  max-height:250px;
+  max-height:500px;
 }
 .row__posterLarge:hover {
   transform:scale(1.09);

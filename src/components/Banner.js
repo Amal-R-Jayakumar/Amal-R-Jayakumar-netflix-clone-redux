@@ -3,7 +3,7 @@ import { Box, Typography, Button } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 // import "./Banner.css";
 import axios from "../axios";
-import requests from "../Request";
+import { requests } from "../Request";
 import Row from "./Row";
 const useStyles = makeStyles({
   banner: {
