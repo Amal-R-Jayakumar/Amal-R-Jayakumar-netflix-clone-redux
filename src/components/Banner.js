@@ -54,6 +54,11 @@ const useStyles = makeStyles({
       transition: "all 0.2s",
     },
   },
+  rowTitle:{
+    padding:"16px",
+    fontSize:"1.5rem !important",
+    fontWeight:"800"
+  }
 });
 
 function Banner() {
@@ -96,14 +101,23 @@ function Banner() {
           {/* {movie.backdrop_path && <div className={classes.bannerFadeBottom} />} */}
         </div>
       </Box>
-      <Row onImageClick={clickAlert} title="Netflix Originals" fetchURL={requests.fetchNetflixOriginals} isLargeRow />
-      <Row title="Trending Now" fetchURL={requests.fetchTrending} />
-      <Row title="Top Rated" fetchURL={requests.fetchTopRated} />
-      <Row title="Action Movies" fetchURL={requests.fetchActionMovies} />
-      <Row title="Comedy Movies" fetchURL={requests.fetchComedyMovies} />
-      <Row title="Horror Movies" fetchURL={requests.fetchHorrorMovies} />
-      <Row title="Romance Movies" fetchURL={requests.fetchRomanceMovies} />
-      <Row title="Documentaries" fetchURL={requests.fetchDocumentaries} />
+      <Row
+        onImageClick={clickAlert}
+        title={
+          <Typography variant="h6" component="h6" className={classes.rowTitle}>
+            Netflix Originals
+          </Typography>
+        }
+        fetchURL={requests.fetchNetflixOriginals}
+        isLargeRow
+      />
+      <Row title={<Typography variant="h6" component="h6" className={classes.rowTitle}>Trending Now</Typography>} fetchURL={requests.fetchTrending} />
+      <Row title={<Typography variant="h6" component="h6" className={classes.rowTitle}>Top Rated</Typography>} fetchURL={requests.fetchTopRated} />
+      <Row title={<Typography variant="h6" component="h6" className={classes.rowTitle}>Action Movies</Typography>} fetchURL={requests.fetchActionMovies} />
+      <Row title={<Typography variant="h6" component="h6" className={classes.rowTitle}>Comedy Movies</Typography>} fetchURL={requests.fetchComedyMovies} />
+      <Row title={<Typography variant="h6" component="h6" className={classes.rowTitle}>Horror Movies</Typography>} fetchURL={requests.fetchHorrorMovies} />
+      <Row title={<Typography variant="h6" component="h6" className={classes.rowTitle}>Romance Movies</Typography>} fetchURL={requests.fetchRomanceMovies} />
+      <Row title={<Typography variant="h6" component="h6" className={classes.rowTitle}>Documentaries</Typography>} fetchURL={requests.fetchDocumentaries} />
     </div>
   );
 }

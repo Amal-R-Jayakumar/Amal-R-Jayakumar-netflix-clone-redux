@@ -1,15 +1,15 @@
 import React from "react";
-import { Box, Typography, Grid, Modal, CardHeader, Card, IconButton, CardContent, CardMedia } from "@mui/material";
+import { Box, Typography, Grid, Modal, CardHeader, Card, IconButton, CardContent, CardMedia, CardActionArea } from "@mui/material";
 import "./Row.css";
 import axios from "../axios";
 import { makeStyles } from "@mui/styles";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { API_KEY } from "../Request";
-
+import clsx from "clsx"
 const useStyles = makeStyles({
   row: {
     color: "#ffffff",
-    paddingLeft: "20px",
+    // paddingLeft: "20px",
   },
   style: {
     position: "absolute",
@@ -25,8 +25,12 @@ const useStyles = makeStyles({
   movieTitle: {
     color: "#ffffff",
     textAlign: "center",
-    fontSize: "16",
+    marginTop:"16px !important",
+    fontSize: "1rem",
     fontWeight: 300,
+  },
+  movieCard: {
+    backgroundColor: "#00000000 !important",
   },
 });
 export default function Row({ title, fetchURL, isLargeRow = false, onImageClick }) {
@@ -73,7 +77,7 @@ export default function Row({ title, fetchURL, isLargeRow = false, onImageClick 
             movies.map(
               (movie) =>
                 ((isLargeRow && movie.poster_path) || (!isLargeRow && movie.backdrop_path)) && (
-                  <div
+                  <Box
                     key={movie.id}
                     onClick={() => {
                       setOpen(true);
@@ -82,11 +86,17 @@ export default function Row({ title, fetchURL, isLargeRow = false, onImageClick 
                       movieVideoFn(movie);
                     }}
                   >
-                    <img className={`row__poster ${isLargeRow && "row__posterLarge"}`} src={`${base_url}${isLargeRow ? movie.poster_path : movie.backdrop_path}`} alt={movie.name} />
-                    <Typography variant="p" component="p" className={classes.movieTitle}>
-                      {movie.name || movie.title}
-                    </Typography>
-                  </div>
+                    <Card className={classes.movieCard}>
+                      <CardContent className={clsx(classes.movieCard)}>
+                        <img className={`row__poster ${isLargeRow && "row__posterLarge"}`} src={`${base_url}${isLargeRow ? movie.poster_path : movie.backdrop_path}`} alt={movie.name} />
+                      </CardContent>
+                      <CardActionArea>
+                        <Typography variant="p" component="p" className={classes.movieTitle}>
+                          {movie.name || movie.title}
+                        </Typography>
+                      </CardActionArea>
+                    </Card>
+                  </Box>
                 )
             )}
         </div>
@@ -109,12 +119,12 @@ export default function Row({ title, fetchURL, isLargeRow = false, onImageClick 
                 />
 
                 {movieVideo.length ? (
-                  // <CardMedia component="video" height="600" src={`https://www.youtube.com/embed/${movieVideo.at(-1).key}`} alt="Paella dish" />
+                  // <CardMedia component="video" height="600" src={`https://www.youtube.com/embed/${movieVideo.at(-1).key}`} alt={movieVideo.name} />
                   <iframe width="560" height="315" src={`https://www.youtube.com/embed/${movieVideo.at(-1).key}`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                 ) : (
-                  <CardMedia component="img" height="600" image={`${base_url}${modalData.poster_path}`} alt="Paella dish" />
+                  <CardMedia component="img" height="600" image={`${base_url}${modalData.poster_path}`} alt={movieVideo.name} />
                 )}
-                {/* {movieVideo.length ? <CardMedia component="video" height="600" src={`https://youtu.be/${movieVideo.at(-1).key}`} alt="Paella dish" /> : <CardMedia component="img" height="600" image={`${base_url}${modalData.poster_path}`} alt="Paella dish" />} */}
+                {/* {movieVideo.length ? <CardMedia component="video" height="600" src={`https://youtu.be/${movieVideo.at(-1).key}`} alt={movieVideo.name} /> : <CardMedia component="img" height="600" image={`${base_url}${modalData.poster_path}`} alt={movieVideo.name} />} */}
               </Card>
             </Box>
           </Modal>
