@@ -5,9 +5,17 @@ To view the project in action <a href="https://netflix-clone-45f43.web.app/">cli
 
 ## Available Scripts
 
+
+
 In the project directory, you can run:
 
+### `npm install`
+
+Then run:
+
 ### `npm start`
+
+Remember to use your own TMDB api.
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
